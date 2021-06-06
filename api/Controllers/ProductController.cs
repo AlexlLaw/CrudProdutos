@@ -61,18 +61,21 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-
         public async Task<ActionResult> Delete([FromServices] DataContext context, int id)
         {
-            var product = await context.Product
+             var product = await context.Product
                 .Include(x => x.Category)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            context.Remove(product);
+            if (product == null) {
+                return NotFound();
+            }
 
-            return Ok();
+             context.Product.Remove(product);
+             await context.SaveChangesAsync();
+
+             return Ok("Produto deletada com sucesso");
         }
-
     }
 }
