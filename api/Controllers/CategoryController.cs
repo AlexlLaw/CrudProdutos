@@ -46,12 +46,11 @@ namespace api.Controllers
             return category;
         }
 
-
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<ActionResult> Delete([FromServices] DataContext context, int id)
         {
-             var category = await context.Category
+            var category = await context.Category
              .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -59,10 +58,10 @@ namespace api.Controllers
                 return NotFound();
             }
 
-             context.Category.Remove(category);
-             await context.SaveChangesAsync();
+            context.Category.Remove(category);
+            await context.SaveChangesAsync();
 
-             return Ok("Categoria deletada com sucesso");
+            return Ok("Categoria deletada com sucesso");
         }
     }
 }
