@@ -1,11 +1,11 @@
 # CrudProdutos
 Criando API .net Core 5
 
-#Swagger 
+# Swagger 
 
 https://localhost:5001/index.html
 
-#Inicialização
+# Inicialização
 
 utilize o comando dotnet run 
 
